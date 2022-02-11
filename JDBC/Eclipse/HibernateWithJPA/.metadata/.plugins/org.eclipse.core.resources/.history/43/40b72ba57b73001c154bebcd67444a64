@@ -1,0 +1,19 @@
+package com.te.hibernate.jpa.beans;
+
+import java.io.Serializable;
+
+public class Employee implements Serializable {
+	private int empId;
+	private String employee;
+	private long empPhoneNumber;
+	public Employee() {
+		super();
+	}
+	public Employee(String employee, long empPhoneNumber) {
+		super();
+		this.employee = employee;
+		this.empPhoneNumber = empPhoneNumber;
+	}
+	
+	
+}

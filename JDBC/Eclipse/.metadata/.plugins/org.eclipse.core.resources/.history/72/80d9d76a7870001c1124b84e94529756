@@ -1,0 +1,15 @@
+package com.te.demo;
+
+import java.util.Scanner;
+
+public class PrimeNumber {
+	public static void main(String[] args) {
+		int number,count;
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Enter a number to check it is prime or not :- ");
+		number = scanner.nextInt();
+		if (number == 1) {
+			System.out.println("Enter a valid number, '1' is a natural number");
+		}
+	}
+}

@@ -1,0 +1,45 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+
+<%@ include file="navbar.jsp"%>
+
+<%
+String data = (String) request.getAttribute("data");
+%>
+<%
+String errmsg = (String) request.getAttribute("errmsg");
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<%
+	if (errmsg != null && !errmsg.isEmpty()) {
+	%>
+
+	<h1 style="color: red;"><%=errmsg%></h1>
+	<%
+	}
+	%>
+	<form action="./getdata" method="post">
+		<label>Enter Your ID : </label> <input type="number" name="id">
+		<input type="submit" value="Search">
+	</form>
+<% if(data != null && !data.isEmpty()){ %>
+	<table>
+		<tr>
+			<td> Employee Details </td>
+		</tr>
+		<tr> 
+			<th> ID </th>
+			<td> <% %>
+		</tr>
+
+	</table>
+	<%} %>
+
+</body>
+</html>

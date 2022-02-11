@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="MathUtilsTest (2)" project="junitdemo" tests="2" started="2" failures="0" errors="0" ignored="0">
+  <testsuite name="com.te.junitdemo.assumption.MathUtilsTest" time="0.033" displayname="Test cases for math utils" uniqueid="[engine:junit-jupiter]/[class:com.te.junitdemo.assumption.MathUtilsTest]">
+    <testcase name="addTest" classname="com.te.junitdemo.assumption.MathUtilsTest" time="0.008" displayname="addTest()" uniqueid="[engine:junit-jupiter]/[class:com.te.junitdemo.assumption.MathUtilsTest]/[method:addTest()]"/>
+    <testcase name="devideTest" classname="com.te.junitdemo.assumption.MathUtilsTest" time="0.024" displayname="devideTest()" uniqueid="[engine:junit-jupiter]/[class:com.te.junitdemo.assumption.MathUtilsTest]/[method:devideTest()]"/>
+  </testsuite>
+</testrun>

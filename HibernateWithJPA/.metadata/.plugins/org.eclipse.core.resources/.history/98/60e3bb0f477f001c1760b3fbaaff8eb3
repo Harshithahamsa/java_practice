@@ -1,0 +1,25 @@
+<%@page import="com.te.employee.bean.EmployeeDetails"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@include file="navbar.jsp"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<fieldset>
+		<legend>Employee Update Details</legend>
+		<form action="./" method="post">
+			<table>
+				<tr>
+					<td><label>Enter Your ID :</label></td>
+					<td><input type="number" name="id" value=""></td>
+				</tr>
+			</table>
+			<input type="submit" value="Search" formaction="search"> 
+		</form>
+	</fieldset>
+</body>
+</html>

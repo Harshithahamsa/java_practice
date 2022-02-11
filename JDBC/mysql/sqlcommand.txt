@@ -1,0 +1,1324 @@
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+6 rows in set (0.00 sec)
+
+mysql> create database collabera;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| collabera          |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+7 rows in set (0.00 sec)
+
+mysql> use collabera;
+Database changed
+mysql> create table employee(e_id int,e_name varchar(20),e_desig varchar(20),e_sal double);
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc employee
+    -> ^C
+mysql> desc employee;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| e_id    | int(11)     | YES  |     | NULL    |       |
+| e_name  | varchar(20) | YES  |     | NULL    |       |
+| e_desig | varchar(20) | YES  |     | NULL    |       |
+| e_sal   | double      | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> alter table employee rename to emp;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| collabera          |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+7 rows in set (0.00 sec)
+
+mysql> desc employee
+    -> ^C
+mysql> desc employee;
+ERROR 1146 (42S02): Table 'collabera.employee' doesn't exist
+mysql> desc emp
+    -> ^C
+mysql> desc emp;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| e_id    | int(11)     | YES  |     | NULL    |       |
+| e_name  | varchar(20) | YES  |     | NULL    |       |
+| e_desig | varchar(20) | YES  |     | NULL    |       |
+| e_sal   | double      | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> alter table emp change e_desig e_role varchar(20);
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc emp;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| e_id   | int(11)     | YES  |     | NULL    |       |
+| e_name | varchar(20) | YES  |     | NULL    |       |
+| e_role | varchar(20) | YES  |     | NULL    |       |
+| e_sal  | double      | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> alter table emp change e_role e_role char(20);
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc emp;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| e_id   | int(11)     | YES  |     | NULL    |       |
+| e_name | varchar(20) | YES  |     | NULL    |       |
+| e_role | char(20)    | YES  |     | NULL    |       |
+| e_sal  | double      | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> insert into emp values(100,"Deepankar","Developer",20000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from emp;
++------+-----------+-----------+-------+
+| e_id | e_name    | e_role    | e_sal |
++------+-----------+-----------+-------+
+|  100 | Deepankar | Developer | 20000 |
++------+-----------+-----------+-------+
+1 row in set (0.00 sec)
+
+mysql> insert into emp(e_role,e_sal,e_id,e_name) values ("Developer",12000,200,"Bhupati");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from emp;
++------+-----------+-----------+-------+
+| e_id | e_name    | e_role    | e_sal |
++------+-----------+-----------+-------+
+|  100 | Deepankar | Developer | 20000 |
+|  200 | Bhupati   | Developer | 12000 |
++------+-----------+-----------+-------+
+2 rows in set (0.00 sec)
+
+mysql> alter table emp add column e_address;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> alter table emp add column 'e_address';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''e_address'' at line 1
+mysql> alter table emp add column e_address varchar(20);
+Query OK, 0 rows affected (0.08 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc emp
+    -> ^C
+mysql> desc emp;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| e_id      | int(11)     | YES  |     | NULL    |       |
+| e_name    | varchar(20) | YES  |     | NULL    |       |
+| e_role    | char(20)    | YES  |     | NULL    |       |
+| e_sal     | double      | YES  |     | NULL    |       |
+| e_address | varchar(20) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> alter table emp add column e_hello varchar(20);
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc emp;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| e_id      | int(11)     | YES  |     | NULL    |       |
+| e_name    | varchar(20) | YES  |     | NULL    |       |
+| e_role    | char(20)    | YES  |     | NULL    |       |
+| e_sal     | double      | YES  |     | NULL    |       |
+| e_address | varchar(20) | YES  |     | NULL    |       |
+| e_hello   | varchar(20) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> alter table emp drop column e_hello;
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc emp;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| e_id      | int(11)     | YES  |     | NULL    |       |
+| e_name    | varchar(20) | YES  |     | NULL    |       |
+| e_role    | char(20)    | YES  |     | NULL    |       |
+| e_sal     | double      | YES  |     | NULL    |       |
+| e_address | varchar(20) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> alter table emp add e_hello varchar(20);
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc emp;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| e_id      | int(11)     | YES  |     | NULL    |       |
+| e_name    | varchar(20) | YES  |     | NULL    |       |
+| e_role    | char(20)    | YES  |     | NULL    |       |
+| e_sal     | double      | YES  |     | NULL    |       |
+| e_address | varchar(20) | YES  |     | NULL    |       |
+| e_hello   | varchar(20) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> alter table emp drop e_hello;
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc emp;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| e_id      | int(11)     | YES  |     | NULL    |       |
+| e_name    | varchar(20) | YES  |     | NULL    |       |
+| e_role    | char(20)    | YES  |     | NULL    |       |
+| e_sal     | double      | YES  |     | NULL    |       |
+| e_address | varchar(20) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select * from emp
+    -> ^C
+mysql> select * from emp;
++------+-----------+-----------+-------+-----------+
+| e_id | e_name    | e_role    | e_sal | e_address |
++------+-----------+-----------+-------+-----------+
+|  100 | Deepankar | Developer | 20000 | NULL      |
+|  200 | Bhupati   | Developer | 12000 | NULL      |
++------+-----------+-----------+-------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> update emp set e_address=bangalore;
+ERROR 1054 (42S22): Unknown column 'bangalore' in 'field list'
+mysql> update emp set e_address=bangalore where e_id=200;
+ERROR 1054 (42S22): Unknown column 'bangalore' in 'field list'
+mysql> update emp set e_address='bangalore' where e_id=200;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from emp;
++------+-----------+-----------+-------+-----------+
+| e_id | e_name    | e_role    | e_sal | e_address |
++------+-----------+-----------+-------+-----------+
+|  100 | Deepankar | Developer | 20000 | NULL      |
+|  200 | Bhupati   | Developer | 12000 | bangalore |
++------+-----------+-----------+-------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> update emp set e_address='odisha' where e_id=100;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from emp;
++------+-----------+-----------+-------+-----------+
+| e_id | e_name    | e_role    | e_sal | e_address |
++------+-----------+-----------+-------+-----------+
+|  100 | Deepankar | Developer | 20000 | odisha    |
+|  200 | Bhupati   | Developer | 12000 | bangalore |
++------+-----------+-----------+-------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> insert into emp(e_role,e_sal,e_id,e_name) values ("Developer",15000,20,"Sankar");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from emp;
++------+-----------+-----------+-------+-----------+
+| e_id | e_name    | e_role    | e_sal | e_address |
++------+-----------+-----------+-------+-----------+
+|  100 | Deepankar | Developer | 20000 | odisha    |
+|  200 | Bhupati   | Developer | 12000 | bangalore |
+|   20 | Sankar    | Developer | 15000 | NULL      |
++------+-----------+-----------+-------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> insert into emp(e_role,e_sal,e_id,e_name,e_address) values ("Developer",15000,20,"Sankar","AndhraPradesh");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from emp;
++------+-----------+-----------+-------+---------------+
+| e_id | e_name    | e_role    | e_sal | e_address     |
++------+-----------+-----------+-------+---------------+
+|  100 | Deepankar | Developer | 20000 | odisha        |
+|  200 | Bhupati   | Developer | 12000 | bangalore     |
+|   20 | Sankar    | Developer | 15000 | NULL          |
+|   20 | Sankar    | Developer | 15000 | AndhraPradesh |
++------+-----------+-----------+-------+---------------+
+4 rows in set (0.00 sec)
+
+mysql> insert into emp(e_role,e_sal,e_id,e_name) values ("Developer",15000,20,'Sankar');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from emp;
++------+-----------+-----------+-------+---------------+
+| e_id | e_name    | e_role    | e_sal | e_address     |
++------+-----------+-----------+-------+---------------+
+|  100 | Deepankar | Developer | 20000 | odisha        |
+|  200 | Bhupati   | Developer | 12000 | bangalore     |
+|   20 | Sankar    | Developer | 15000 | NULL          |
+|   20 | Sankar    | Developer | 15000 | AndhraPradesh |
+|   20 | Sankar    | Developer | 15000 | NULL          |
++------+-----------+-----------+-------+---------------+
+5 rows in set (0.00 sec)
+
+mysql> delete from emp where e_address = 'AndraPradesh';
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from emp;
++------+-----------+-----------+-------+---------------+
+| e_id | e_name    | e_role    | e_sal | e_address     |
++------+-----------+-----------+-------+---------------+
+|  100 | Deepankar | Developer | 20000 | odisha        |
+|  200 | Bhupati   | Developer | 12000 | bangalore     |
+|   20 | Sankar    | Developer | 15000 | NULL          |
+|   20 | Sankar    | Developer | 15000 | AndhraPradesh |
+|   20 | Sankar    | Developer | 15000 | NULL          |
++------+-----------+-----------+-------+---------------+
+5 rows in set (0.00 sec)
+
+mysql> delete from emp where e_address = 'AndhraPradesh';
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from emp;
++------+-----------+-----------+-------+-----------+
+| e_id | e_name    | e_role    | e_sal | e_address |
++------+-----------+-----------+-------+-----------+
+|  100 | Deepankar | Developer | 20000 | odisha    |
+|  200 | Bhupati   | Developer | 12000 | bangalore |
+|   20 | Sankar    | Developer | 15000 | NULL      |
+|   20 | Sankar    | Developer | 15000 | NULL      |
++------+-----------+-----------+-------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> delete from emp where e_id = 20;
+Query OK, 2 rows affected (0.00 sec)
+
+mysql> select * from emp;
++------+-----------+-----------+-------+-----------+
+| e_id | e_name    | e_role    | e_sal | e_address |
++------+-----------+-----------+-------+-----------+
+|  100 | Deepankar | Developer | 20000 | odisha    |
+|  200 | Bhupati   | Developer | 12000 | bangalore |
++------+-----------+-----------+-------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> update emp e_role = '
+    '> ^C
+mysql> update emp e_role = 'Teacher' where 
+    -> ^C
+mysql> update emp e_role = 'Teacher' where e_id=200;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '= 'Teacher' where e_id=200' at line 1
+mysql> update emp set e_role = 'Teacher' where e_id=200;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from emp;
++------+-----------+-----------+-------+-----------+
+| e_id | e_name    | e_role    | e_sal | e_address |
++------+-----------+-----------+-------+-----------+
+|  100 | Deepankar | Developer | 20000 | odisha    |
+|  200 | Bhupati   | Teacher   | 12000 | bangalore |
++------+-----------+-----------+-------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> 
+mysql> 
+mysql> insert into emp(e_role,e_sal,e_id,e_name,e_address) values ("Developer",15000,20,"Sankar","AndhraPradesh");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from emp;
++------+-----------+-----------+-------+---------------+
+| e_id | e_name    | e_role    | e_sal | e_address     |
++------+-----------+-----------+-------+---------------+
+|  100 | Deepankar | Developer | 20000 | odisha        |
+|  200 | Bhupati   | Teacher   | 12000 | bangalore     |
+|   20 | Sankar    | Developer | 15000 | AndhraPradesh |
++------+-----------+-----------+-------+---------------+
+3 rows in set (0.00 sec)
+
+mysql> create view emp_view as select e_id,e_name,e_role from emp;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from emp_view;
++------+-----------+-----------+
+| e_id | e_name    | e_role    |
++------+-----------+-----------+
+|  100 | Deepankar | Developer |
+|  200 | Bhupati   | Teacher   |
+|   20 | Sankar    | Developer |
++------+-----------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> insert into emp values(300,'Anil','Developer';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> insert into emp values(300,'Anil','Developer');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into emp_view values(300,'Anil','Developer');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from emp_view;
++------+-----------+-----------+
+| e_id | e_name    | e_role    |
++------+-----------+-----------+
+|  100 | Deepankar | Developer |
+|  200 | Bhupati   | Teacher   |
+|   20 | Sankar    | Developer |
+|  300 | Anil      | Developer |
++------+-----------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> select * from emp;
++------+-----------+-----------+-------+---------------+
+| e_id | e_name    | e_role    | e_sal | e_address     |
++------+-----------+-----------+-------+---------------+
+|  100 | Deepankar | Developer | 20000 | odisha        |
+|  200 | Bhupati   | Teacher   | 12000 | bangalore     |
+|   20 | Sankar    | Developer | 15000 | AndhraPradesh |
+|  300 | Anil      | Developer |  NULL | NULL          |
++------+-----------+-----------+-------+---------------+
+4 rows in set (0.00 sec)
+
+mysql> delete from emp_view where e_id=20;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from emp;
++------+-----------+-----------+-------+-----------+
+| e_id | e_name    | e_role    | e_sal | e_address |
++------+-----------+-----------+-------+-----------+
+|  100 | Deepankar | Developer | 20000 | odisha    |
+|  200 | Bhupati   | Teacher   | 12000 | bangalore |
+|  300 | Anil      | Developer |  NULL | NULL      |
++------+-----------+-----------+-------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> create table employee(ENAME varchar(20),DNAME varchar(20),JOB varchar(20),EMPNO int,HIREDATE varchar(10),LOC varchar(20));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc employee
+    -> ^C
+mysql> desc employee;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| ENAME    | varchar(20) | YES  |     | NULL    |       |
+| DNAME    | varchar(20) | YES  |     | NULL    |       |
+| JOB      | varchar(20) | YES  |     | NULL    |       |
+| EMPNO    | int(11)     | YES  |     | NULL    |       |
+| HIREDATE | varchar(10) | YES  |     | NULL    |       |
+| LOC      | varchar(20) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+6 rows in set (0.01 sec)
+
+mysql> insert into employee(ENAME) values('ADAMS','ALLEN','BLAKE','CLARK','FORD','JAMES','JONES','KING','MARTIN','MILLER','SCOTT','SMITH','TURNER','WARD');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into employee(ENAME) values(('ADAMS'),('ALLEN'),('BLAKE'),('CLARK'),('FORD'),('JAMES'),('JONES'),('KING'),('MARTIN'),('MILLER'),('SCOTT'),('SMITH'),('TURNER'),('WARD'));
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into employee ENAME values(('ADAMS'),('ALLEN'),('BLAKE'),('CLARK'),('FORD'),('JAMES'),('JONES'),('KING'),('MARTIN'),('MILLER'),('SCOTT'),('SMITH'),('TURNER'),('WARD'));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ENAME values(('ADAMS'),('ALLEN'),('BLAKE'),('CLARK'),('FORD'),('JAMES'),('JONES'' at line 1
+mysql> insert into employee(ENAME) values(('ADAMS'),('ALLEN'),('BLAKE'),('CLARK'),('FORD'),('JAMES'),('JONES'),('KING'),('MARTIN'),('MILLER'),('SCOTT'),('SMITH'),('TURNER'),('WARD'));
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> \q
+mysql> drop table student;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> create table student (s_id int primary key, s_name varchar(20) not null,s_phone varchar(20) unique key);
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc student;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| s_id    | int(11)     | NO   | PRI | NULL    |       |
+| s_name  | varchar(20) | NO   |     | NULL    |       |
+| s_phone | varchar(20) | YES  | UNI | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into student values (100,"sam",null);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into student values (100,"jhon","123456789");
+ERROR 1062 (23000): Duplicate entry '100' for key 'PRIMARY'
+mysql> insert into student values (200,"jhon","123456789");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from student;
++------+--------+-----------+
+| s_id | s_name | s_phone   |
++------+--------+-----------+
+|  100 | sam    | NULL      |
+|  200 | jhon   | 123456789 |
++------+--------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> desc employee;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| emp_no   | int(11)     | YES  |     | NULL    |       |
+| e_name   | varchar(20) | YES  |     | NULL    |       |
+| e_job    | varchar(20) | YES  |     | NULL    |       |
+| e_mgr    | int(11)     | YES  |     | NULL    |       |
+| hiredate | date        | YES  |     | NULL    |       |
+| e_sal    | int(11)     | YES  |     | NULL    |       |
+| e_com    | int(11)     | YES  |     | NULL    |       |
+| dept_no  | int(11)     | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+8 rows in set (0.01 sec)
+
+mysql> alter table employee change emp_no emp_no int primary key;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc employee;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| emp_no   | int(11)     | NO   | PRI | NULL    |       |
+| e_name   | varchar(20) | YES  |     | NULL    |       |
+| e_job    | varchar(20) | YES  |     | NULL    |       |
+| e_mgr    | int(11)     | YES  |     | NULL    |       |
+| hiredate | date        | YES  |     | NULL    |       |
+| e_sal    | int(11)     | YES  |     | NULL    |       |
+| e_com    | int(11)     | YES  |     | NULL    |       |
+| dept_no  | int(11)     | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+8 rows in set (0.02 sec)
+
+mysql> create table dept (d_no int primary key,d_name varchar(20),d_loc varchar(20),emp_id int,foreign key(emp_id) references emp(e_id);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> create table dept (d_no int primary key,d_name varchar(20),d_loc varchar(20),emp_id int,foreign key(emp_id) references emp(e_id));
+ERROR 1215 (HY000): Cannot add foreign key constraint
+mysql> create table dept (d_no int primary key,d_name varchar(20),d_loc varchar(20),emp_id int,foreign key(emp_id) references employee(e_id));
+ERROR 1215 (HY000): Cannot add foreign key constraint
+mysql> create table dept (d_no int primary key,d_name varchar(20),d_loc varchar(20),emp_id int,foreign key(emp_id) references employee(emp_no));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc dept;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| d_no   | int(11)     | NO   | PRI | NULL    |       |
+| d_name | varchar(20) | YES  |     | NULL    |       |
+| d_loc  | varchar(20) | YES  |     | NULL    |       |
+| emp_id | int(11)     | YES  | MUL | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> desc emp;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| e_id      | int(11)     | YES  |     | NULL    |       |
+| e_name    | varchar(20) | YES  |     | NULL    |       |
+| e_role    | char(20)    | YES  |     | NULL    |       |
+| e_sal     | double      | YES  |     | NULL    |       |
+| e_address | varchar(20) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> drop table dept;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc dept;
+ERROR 1146 (42S02): Table 'collabera.dept' doesn't exist
+mysql> create table dept (d_no int primary key,d_name varchar(20),d_loc varchar(20),emp_id int,foreign key(emp_id) references emp(e_id);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> create table dept (d_no int primary key,d_name varchar(20),d_loc varchar(20),emp_id int,foreign key(emp_id) references emp(e_id));
+ERROR 1215 (HY000): Cannot add foreign key constraint
+mysql> create table dept (d_no int primary key,d_name varchar(20),d_loc varchar(20),emp_id int,foreign key(emp_id) references employee(emp_no));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc dept;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| d_no   | int(11)     | NO   | PRI | NULL    |       |
+| d_name | varchar(20) | YES  |     | NULL    |       |
+| d_loc  | varchar(20) | YES  |     | NULL    |       |
+| emp_id | int(11)     | YES  | MUL | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> insert into dept values (10,'ACCOUNTING','NEW YORK');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into dept values (10,'ACCOUNTING','NEW YORK',7369);
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`collabera`.`dept`, CONSTRAINT `dept_ibfk_1` FOREIGN KEY (`emp_id`) REFERENCES `employee` (`emp_no`))
+mysql> insert into employee (emp_no,e_name,e_job,e_mgr,hiredate,e_sal,e_com,dept_no) values (7369,'smith','clerk',7602,17-dec-80,8000,,20);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'dec-80,8000,,20)' at line 1
+mysql> insert into employee (emp_no,e_name,e_job,e_mgr,hiredate,e_sal,e_com,dept_no) values (7369,'smith','clerk',7602,17-dec-80,8000,null,20);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'dec-80,8000,null,20)' at line 1
+mysql> insert into employee (emp_no,e_name,e_job,e_mgr,hiredate,e_sal,e_com,dept_no) values (7369,'smith','clerk',7602,80-12-17,8000,null,20);
+ERROR 1292 (22007): Incorrect date value: '51' for column 'hiredate' at row 1
+mysql> insert into employee (emp_no,e_name,e_job,e_mgr,hiredate,e_sal,e_com,dept_no) values (7369,'smith','clerk',7602,'80-12-17',8000,null,20);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from employee;
++--------+--------+-------+-------+------------+-------+-------+---------+
+| emp_no | e_name | e_job | e_mgr | hiredate   | e_sal | e_com | dept_no |
++--------+--------+-------+-------+------------+-------+-------+---------+
+|   7369 | smith  | clerk |  7602 | 1980-12-17 |  8000 |  NULL |      20 |
++--------+--------+-------+-------+------------+-------+-------+---------+
+1 row in set (0.00 sec)
+
+mysql> insert into employee (emp_no,e_name,e_job,e_mgr,hiredate,e_sal,e_com,dept_no) values (7369,'smith','clerk',7602,'80-12-17',8000,,20);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '20)' at line 1
+mysql> desc employee;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| emp_no   | int(11)     | NO   | PRI | NULL    |       |
+| e_name   | varchar(20) | YES  |     | NULL    |       |
+| e_job    | varchar(20) | YES  |     | NULL    |       |
+| e_mgr    | int(11)     | YES  |     | NULL    |       |
+| hiredate | date        | YES  |     | NULL    |       |
+| e_sal    | int(11)     | YES  |     | NULL    |       |
+| e_com    | int(11)     | YES  |     | NULL    |       |
+| dept_no  | int(11)     | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+mysql> select * from employee;
++--------+--------+-----------+-------+------------+-------+-------+---------+
+| emp_no | e_name | e_job     | e_mgr | hiredate   | e_sal | e_com | dept_no |
++--------+--------+-----------+-------+------------+-------+-------+---------+
+|   7369 | SMITH  | CLERK     |  7602 | 1980-12-17 |   800 |  NULL |      20 |
+|   7499 | ALLEN  | SALESMAN  |  7698 | 1081-02-20 |  1600 |   300 |      30 |
+|   7521 | WARD   | SALESMAN  |  7698 | 1981-02-22 |  1250 |   500 |      30 |
+|   7566 | JONES  | MANAGER   |  7839 | 1981-04-02 |  2975 |  NULL |      20 |
+|   7654 | MARTIN | SALESMAN  |  7698 | 1981-09-28 |  1250 |  1400 |      30 |
+|   7698 | BLAKE  | MANAGER   |  7839 | 1981-05-01 |  2850 |  NULL |      30 |
+|   7782 | CLARK  | MANAGER   |  7839 | 1981-06-09 |  2450 |  NULL |      10 |
+|   7788 | SCOTT  | ANALYST   |  7566 | 1987-04-19 |  3000 |  NULL |      20 |
+|   7839 | KING   | PRESIDENT |  NULL | 1981-11-17 |  5000 |  NULL |      10 |
+|   7844 | TURNER | SALESMAN  |  7698 | 1981-09-08 |  1500 |     0 |      30 |
+|   7876 | ADAMS  | CLERK     |  7788 | 1987-05-23 |  1100 |  NULL |      20 |
+|   7900 | JAMES  | CLERK     |  7698 | 1981-12-03 |   950 |  NULL |      30 |
+|   7902 | FORD   | ANALYST   |  7566 | 1981-12-03 |  3000 |  NULL |      20 |
+|   7934 | MILLER | CLERK     |  7782 | 1982-01-23 |  1300 |  NULL |      10 |
++--------+--------+-----------+-------+------------+-------+-------+---------+
+14 rows in set (0.00 sec)
+
+mysql> desc employee;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| emp_no   | int(11)     | NO   | PRI | NULL    |       |
+| e_name   | varchar(20) | YES  |     | NULL    |       |
+| e_job    | varchar(20) | YES  |     | NULL    |       |
+| e_mgr    | int(11)     | YES  |     | NULL    |       |
+| hiredate | date        | YES  |     | NULL    |       |
+| e_sal    | int(11)     | YES  |     | NULL    |       |
+| e_com    | int(11)     | YES  |     | NULL    |       |
+| dept_no  | int(11)     | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+mysql> desc dept;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| d_no   | int(11)     | NO   | PRI | NULL    |       |
+| d_name | varchar(20) | YES  |     | NULL    |       |
+| d_loc  | varchar(20) | YES  |     | NULL    |       |
+| emp_id | int(11)     | YES  | MUL | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select * from employee;
++--------+--------+-----------+-------+------------+-------+-------+---------+
+| emp_no | e_name | e_job     | e_mgr | hiredate   | e_sal | e_com | dept_no |
++--------+--------+-----------+-------+------------+-------+-------+---------+
+|   7369 | SMITH  | CLERK     |  7602 | 1980-12-17 |   800 |  NULL |      20 |
+|   7499 | ALLEN  | SALESMAN  |  7698 | 1081-02-20 |  1600 |   300 |      30 |
+|   7521 | WARD   | SALESMAN  |  7698 | 1981-02-22 |  1250 |   500 |      30 |
+|   7566 | JONES  | MANAGER   |  7839 | 1981-04-02 |  2975 |  NULL |      20 |
+|   7654 | MARTIN | SALESMAN  |  7698 | 1981-09-28 |  1250 |  1400 |      30 |
+|   7698 | BLAKE  | MANAGER   |  7839 | 1981-05-01 |  2850 |  NULL |      30 |
+|   7782 | CLARK  | MANAGER   |  7839 | 1981-06-09 |  2450 |  NULL |      10 |
+|   7788 | SCOTT  | ANALYST   |  7566 | 1987-04-19 |  3000 |  NULL |      20 |
+|   7839 | KING   | PRESIDENT |  NULL | 1981-11-17 |  5000 |  NULL |      10 |
+|   7844 | TURNER | SALESMAN  |  7698 | 1981-09-08 |  1500 |     0 |      30 |
+|   7876 | ADAMS  | CLERK     |  7788 | 1987-05-23 |  1100 |  NULL |      20 |
+|   7900 | JAMES  | CLERK     |  7698 | 1981-12-03 |   950 |  NULL |      30 |
+|   7902 | FORD   | ANALYST   |  7566 | 1981-12-03 |  3000 |  NULL |      20 |
+|   7934 | MILLER | CLERK     |  7782 | 1982-01-23 |  1300 |  NULL |      10 |
++--------+--------+-----------+-------+------------+-------+-------+---------+
+14 rows in set (0.00 sec)
+
+mysql> select e_name,e_sal from employee;
++--------+-------+
+| e_name | e_sal |
++--------+-------+
+| SMITH  |   800 |
+| ALLEN  |  1600 |
+| WARD   |  1250 |
+| JONES  |  2975 |
+| MARTIN |  1250 |
+| BLAKE  |  2850 |
+| CLARK  |  2450 |
+| SCOTT  |  3000 |
+| KING   |  5000 |
+| TURNER |  1500 |
+| ADAMS  |  1100 |
+| JAMES  |   950 |
+| FORD   |  3000 |
+| MILLER |  1300 |
++--------+-------+
+14 rows in set (0.00 sec)
+
+mysql> select e_name,dept_no from employee;
++--------+---------+
+| e_name | dept_no |
++--------+---------+
+| SMITH  |      20 |
+| ALLEN  |      30 |
+| WARD   |      30 |
+| JONES  |      20 |
+| MARTIN |      30 |
+| BLAKE  |      30 |
+| CLARK  |      10 |
+| SCOTT  |      20 |
+| KING   |      10 |
+| TURNER |      30 |
+| ADAMS  |      20 |
+| JAMES  |      30 |
+| FORD   |      20 |
+| MILLER |      10 |
++--------+---------+
+14 rows in set (0.00 sec)
+
+mysql> select e_job from employee;
++-----------+
+| e_job     |
++-----------+
+| CLERK     |
+| SALESMAN  |
+| SALESMAN  |
+| MANAGER   |
+| SALESMAN  |
+| MANAGER   |
+| MANAGER   |
+| ANALYST   |
+| PRESIDENT |
+| SALESMAN  |
+| CLERK     |
+| CLERK     |
+| ANALYST   |
+| CLERK     |
++-----------+
+14 rows in set (0.00 sec)
+
+mysql> select emp_no,e_name from employee;
++--------+--------+
+| emp_no | e_name |
++--------+--------+
+|   7369 | SMITH  |
+|   7499 | ALLEN  |
+|   7521 | WARD   |
+|   7566 | JONES  |
+|   7654 | MARTIN |
+|   7698 | BLAKE  |
+|   7782 | CLARK  |
+|   7788 | SCOTT  |
+|   7839 | KING   |
+|   7844 | TURNER |
+|   7876 | ADAMS  |
+|   7900 | JAMES  |
+|   7902 | FORD   |
+|   7934 | MILLER |
++--------+--------+
+14 rows in set (0.00 sec)
+
+mysql> select e_name,e_job from employee;
++--------+-----------+
+| e_name | e_job     |
++--------+-----------+
+| SMITH  | CLERK     |
+| ALLEN  | SALESMAN  |
+| WARD   | SALESMAN  |
+| JONES  | MANAGER   |
+| MARTIN | SALESMAN  |
+| BLAKE  | MANAGER   |
+| CLARK  | MANAGER   |
+| SCOTT  | ANALYST   |
+| KING   | PRESIDENT |
+| TURNER | SALESMAN  |
+| ADAMS  | CLERK     |
+| JAMES  | CLERK     |
+| FORD   | ANALYST   |
+| MILLER | CLERK     |
++--------+-----------+
+14 rows in set (0.00 sec)
+
+mysql> select e_sal from employee;
++-------+
+| e_sal |
++-------+
+|   800 |
+|  1600 |
+|  1250 |
+|  2975 |
+|  1250 |
+|  2850 |
+|  2450 |
+|  3000 |
+|  5000 |
+|  1500 |
+|  1100 |
+|   950 |
+|  3000 |
+|  1300 |
++-------+
+14 rows in set (0.00 sec)
+
+mysql> select e_sal*12 as deep from employee;
++-------+
+| deep  |
++-------+
+|  9600 |
+| 19200 |
+| 15000 |
+| 35700 |
+| 15000 |
+| 34200 |
+| 29400 |
+| 36000 |
+| 60000 |
+| 18000 |
+| 13200 |
+| 11400 |
+| 36000 |
+| 15600 |
++-------+
+14 rows in set (0.00 sec)
+
+mysql> select e_sal*12 "Hello" from employee;
++-------+
+| Hello |
++-------+
+|  9600 |
+| 19200 |
+| 15000 |
+| 35700 |
+| 15000 |
+| 34200 |
+| 29400 |
+| 36000 |
+| 60000 |
+| 18000 |
+| 13200 |
+| 11400 |
+| 36000 |
+| 15600 |
++-------+
+14 rows in set (0.00 sec)
+
+mysql> select e_sal*12 "Hello world" from employee;
++-------------+
+| Hello world |
++-------------+
+|        9600 |
+|       19200 |
+|       15000 |
+|       35700 |
+|       15000 |
+|       34200 |
+|       29400 |
+|       36000 |
+|       60000 |
+|       18000 |
+|       13200 |
+|       11400 |
+|       36000 |
+|       15600 |
++-------------+
+14 rows in set (0.00 sec)
+
+mysql> select e_sal*12 as hello world from employee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'world from employee' at line 1
+mysql> select e_sal*12 "Hello world" from employee;
++-------------+
+| Hello world |
++-------------+
+|        9600 |
+|       19200 |
+|       15000 |
+|       35700 |
+|       15000 |
+|       34200 |
+|       29400 |
+|       36000 |
+|       60000 |
+|       18000 |
+|       13200 |
+|       11400 |
+|       36000 |
+|       15600 |
++-------------+
+14 rows in set (0.00 sec)
+
+mysql> select e_sal*12 "Annual Salary", e_sal*6 "half term salary" from employee;
++---------------+------------------+
+| Annual Salary | half term salary |
++---------------+------------------+
+|          9600 |             4800 |
+|         19200 |             9600 |
+|         15000 |             7500 |
+|         35700 |            17850 |
+|         15000 |             7500 |
+|         34200 |            17100 |
+|         29400 |            14700 |
+|         36000 |            18000 |
+|         60000 |            30000 |
+|         18000 |             9000 |
+|         13200 |             6600 |
+|         11400 |             5700 |
+|         36000 |            18000 |
+|         15600 |             7800 |
++---------------+------------------+
+14 rows in set (0.00 sec)
+
+mysql> 
+mysql> delimiter &&
+mysql> create procedure getEmp()
+    -> begin
+    -> select * from employee
+    -> end &&
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 4
+mysql> delimiter &&
+mysql> create procedure getEmp()
+    -> begin
+    -> select * from employee;
+    -> end &&
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> call getEmp();
+    -> ^C
+mysql> call getEmp(6);
+    -> ^C
+mysql> call getEmp();
+    -> delimiter&&
++--------+--------+-----------+-------+------------+-------+-------+---------+
+| emp_no | e_name | e_job     | e_mgr | hiredate   | e_sal | e_com | dept_no |
++--------+--------+-----------+-------+------------+-------+-------+---------+
+|   7369 | SMITH  | CLERK     |  7602 | 1980-12-17 |   800 |  NULL |      20 |
+|   7499 | ALLEN  | SALESMAN  |  7698 | 1081-02-20 |  1600 |   300 |      30 |
+|   7521 | WARD   | SALESMAN  |  7698 | 1981-02-22 |  1250 |   500 |      30 |
+|   7566 | JONES  | MANAGER   |  7839 | 1981-04-02 |  2975 |  NULL |      20 |
+|   7654 | MARTIN | SALESMAN  |  7698 | 1981-09-28 |  1250 |  1400 |      30 |
+|   7698 | BLAKE  | MANAGER   |  7839 | 1981-05-01 |  2850 |  NULL |      30 |
+|   7782 | CLARK  | MANAGER   |  7839 | 1981-06-09 |  2450 |  NULL |      10 |
+|   7788 | SCOTT  | ANALYST   |  7566 | 1987-04-19 |  3000 |  NULL |      20 |
+|   7839 | KING   | PRESIDENT |  NULL | 1981-11-17 |  5000 |  NULL |      10 |
+|   7844 | TURNER | SALESMAN  |  7698 | 1981-09-08 |  1500 |     0 |      30 |
+|   7876 | ADAMS  | CLERK     |  7788 | 1987-05-23 |  1100 |  NULL |      20 |
+|   7900 | JAMES  | CLERK     |  7698 | 1981-12-03 |   950 |  NULL |      30 |
+|   7902 | FORD   | ANALYST   |  7566 | 1981-12-03 |  3000 |  NULL |      20 |
+|   7934 | MILLER | CLERK     |  7782 | 1982-01-23 |  1300 |  NULL |      10 |
++--------+--------+-----------+-------+------------+-------+-------+---------+
+14 rows in set (0.00 sec)
+
+Query OK, 0 rows affected (0.05 sec)
+
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'delimiter' at line 1
+mysql> call getEmp() demiliter &&;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'demiliter' at line 1
+    -> call getEmp() delimiter&&;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ';
+call getEmp() delimiter' at line 1
+    -> ^C
+mysql> call getEmp() delimiter &&;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'delimiter' at line 1
+    -> ^C
+mysql> call getEmp();
+    -> delimiter&&
++--------+--------+-----------+-------+------------+-------+-------+---------+
+| emp_no | e_name | e_job     | e_mgr | hiredate   | e_sal | e_com | dept_no |
++--------+--------+-----------+-------+------------+-------+-------+---------+
+|   7369 | SMITH  | CLERK     |  7602 | 1980-12-17 |   800 |  NULL |      20 |
+|   7499 | ALLEN  | SALESMAN  |  7698 | 1081-02-20 |  1600 |   300 |      30 |
+|   7521 | WARD   | SALESMAN  |  7698 | 1981-02-22 |  1250 |   500 |      30 |
+|   7566 | JONES  | MANAGER   |  7839 | 1981-04-02 |  2975 |  NULL |      20 |
+|   7654 | MARTIN | SALESMAN  |  7698 | 1981-09-28 |  1250 |  1400 |      30 |
+|   7698 | BLAKE  | MANAGER   |  7839 | 1981-05-01 |  2850 |  NULL |      30 |
+|   7782 | CLARK  | MANAGER   |  7839 | 1981-06-09 |  2450 |  NULL |      10 |
+|   7788 | SCOTT  | ANALYST   |  7566 | 1987-04-19 |  3000 |  NULL |      20 |
+|   7839 | KING   | PRESIDENT |  NULL | 1981-11-17 |  5000 |  NULL |      10 |
+|   7844 | TURNER | SALESMAN  |  7698 | 1981-09-08 |  1500 |     0 |      30 |
+|   7876 | ADAMS  | CLERK     |  7788 | 1987-05-23 |  1100 |  NULL |      20 |
+|   7900 | JAMES  | CLERK     |  7698 | 1981-12-03 |   950 |  NULL |      30 |
+|   7902 | FORD   | ANALYST   |  7566 | 1981-12-03 |  3000 |  NULL |      20 |
+|   7934 | MILLER | CLERK     |  7782 | 1982-01-23 |  1300 |  NULL |      10 |
++--------+--------+-----------+-------+------------+-------+-------+---------+
+14 rows in set (0.00 sec)
+
+Query OK, 0 rows affected (0.06 sec)
+
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'delimiter' at line 1
+mysql> call getEmp();
+    -> delimiter &&
++--------+--------+-----------+-------+------------+-------+-------+---------+
+| emp_no | e_name | e_job     | e_mgr | hiredate   | e_sal | e_com | dept_no |
++--------+--------+-----------+-------+------------+-------+-------+---------+
+|   7369 | SMITH  | CLERK     |  7602 | 1980-12-17 |   800 |  NULL |      20 |
+|   7499 | ALLEN  | SALESMAN  |  7698 | 1081-02-20 |  1600 |   300 |      30 |
+|   7521 | WARD   | SALESMAN  |  7698 | 1981-02-22 |  1250 |   500 |      30 |
+|   7566 | JONES  | MANAGER   |  7839 | 1981-04-02 |  2975 |  NULL |      20 |
+|   7654 | MARTIN | SALESMAN  |  7698 | 1981-09-28 |  1250 |  1400 |      30 |
+|   7698 | BLAKE  | MANAGER   |  7839 | 1981-05-01 |  2850 |  NULL |      30 |
+|   7782 | CLARK  | MANAGER   |  7839 | 1981-06-09 |  2450 |  NULL |      10 |
+|   7788 | SCOTT  | ANALYST   |  7566 | 1987-04-19 |  3000 |  NULL |      20 |
+|   7839 | KING   | PRESIDENT |  NULL | 1981-11-17 |  5000 |  NULL |      10 |
+|   7844 | TURNER | SALESMAN  |  7698 | 1981-09-08 |  1500 |     0 |      30 |
+|   7876 | ADAMS  | CLERK     |  7788 | 1987-05-23 |  1100 |  NULL |      20 |
+|   7900 | JAMES  | CLERK     |  7698 | 1981-12-03 |   950 |  NULL |      30 |
+|   7902 | FORD   | ANALYST   |  7566 | 1981-12-03 |  3000 |  NULL |      20 |
+|   7934 | MILLER | CLERK     |  7782 | 1982-01-23 |  1300 |  NULL |      10 |
++--------+--------+-----------+-------+------------+-------+-------+---------+
+14 rows in set (0.00 sec)
+
+Query OK, 0 rows affected (0.06 sec)
+
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'delimiter' at line 1
+mysql> call getEmp();
+    -> delimiter &&;
++--------+--------+-----------+-------+------------+-------+-------+---------+
+| emp_no | e_name | e_job     | e_mgr | hiredate   | e_sal | e_com | dept_no |
++--------+--------+-----------+-------+------------+-------+-------+---------+
+|   7369 | SMITH  | CLERK     |  7602 | 1980-12-17 |   800 |  NULL |      20 |
+|   7499 | ALLEN  | SALESMAN  |  7698 | 1081-02-20 |  1600 |   300 |      30 |
+|   7521 | WARD   | SALESMAN  |  7698 | 1981-02-22 |  1250 |   500 |      30 |
+|   7566 | JONES  | MANAGER   |  7839 | 1981-04-02 |  2975 |  NULL |      20 |
+|   7654 | MARTIN | SALESMAN  |  7698 | 1981-09-28 |  1250 |  1400 |      30 |
+|   7698 | BLAKE  | MANAGER   |  7839 | 1981-05-01 |  2850 |  NULL |      30 |
+|   7782 | CLARK  | MANAGER   |  7839 | 1981-06-09 |  2450 |  NULL |      10 |
+|   7788 | SCOTT  | ANALYST   |  7566 | 1987-04-19 |  3000 |  NULL |      20 |
+|   7839 | KING   | PRESIDENT |  NULL | 1981-11-17 |  5000 |  NULL |      10 |
+|   7844 | TURNER | SALESMAN  |  7698 | 1981-09-08 |  1500 |     0 |      30 |
+|   7876 | ADAMS  | CLERK     |  7788 | 1987-05-23 |  1100 |  NULL |      20 |
+|   7900 | JAMES  | CLERK     |  7698 | 1981-12-03 |   950 |  NULL |      30 |
+|   7902 | FORD   | ANALYST   |  7566 | 1981-12-03 |  3000 |  NULL |      20 |
+|   7934 | MILLER | CLERK     |  7782 | 1982-01-23 |  1300 |  NULL |      10 |
++--------+--------+-----------+-------+------------+-------+-------+---------+
+14 rows in set (0.00 sec)
+
+Query OK, 0 rows affected (0.05 sec)
+
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'delimiter' at line 1
+    -> delimiter &&;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ';
+delimiter' at line 1
+    -> ^C
+mysql> call getEmp();
+    -> delimiter&&
++--------+--------+-----------+-------+------------+-------+-------+---------+
+| emp_no | e_name | e_job     | e_mgr | hiredate   | e_sal | e_com | dept_no |
++--------+--------+-----------+-------+------------+-------+-------+---------+
+|   7369 | SMITH  | CLERK     |  7602 | 1980-12-17 |   800 |  NULL |      20 |
+|   7499 | ALLEN  | SALESMAN  |  7698 | 1081-02-20 |  1600 |   300 |      30 |
+|   7521 | WARD   | SALESMAN  |  7698 | 1981-02-22 |  1250 |   500 |      30 |
+|   7566 | JONES  | MANAGER   |  7839 | 1981-04-02 |  2975 |  NULL |      20 |
+|   7654 | MARTIN | SALESMAN  |  7698 | 1981-09-28 |  1250 |  1400 |      30 |
+|   7698 | BLAKE  | MANAGER   |  7839 | 1981-05-01 |  2850 |  NULL |      30 |
+|   7782 | CLARK  | MANAGER   |  7839 | 1981-06-09 |  2450 |  NULL |      10 |
+|   7788 | SCOTT  | ANALYST   |  7566 | 1987-04-19 |  3000 |  NULL |      20 |
+|   7839 | KING   | PRESIDENT |  NULL | 1981-11-17 |  5000 |  NULL |      10 |
+|   7844 | TURNER | SALESMAN  |  7698 | 1981-09-08 |  1500 |     0 |      30 |
+|   7876 | ADAMS  | CLERK     |  7788 | 1987-05-23 |  1100 |  NULL |      20 |
+|   7900 | JAMES  | CLERK     |  7698 | 1981-12-03 |   950 |  NULL |      30 |
+|   7902 | FORD   | ANALYST   |  7566 | 1981-12-03 |  3000 |  NULL |      20 |
+|   7934 | MILLER | CLERK     |  7782 | 1982-01-23 |  1300 |  NULL |      10 |
++--------+--------+-----------+-------+------------+-------+-------+---------+
+14 rows in set (0.00 sec)
+
+Query OK, 0 rows affected (0.06 sec)
+
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'delimiter' at line 1
+mysql> delimiter &&
+mysql> create procedure get_emp()
+    -> begin
+    -> ^C
+mysql> delimiter &&
+mysql> create procedure get_emp(empno int)
+    -> begin
+    -> create * from employee where emp_no=empno;
+    -> end &&
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '* from employee where emp_no=empno;
+end' at line 3
+mysql> delimiter &&
+mysql> create procedure get_emp(empno int)
+    -> begin
+    -> select * from employee where emp_no=empno;
+    -> end &&
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> call get_emp(7934)
+    -> delimiter &&
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'delimiter' at line 2
+mysql> call get_emp(7934)
+    -> delimiter&&
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'delimiter' at line 2
+mysql> call get_emp(7934);
+    -> delimiter&&
++--------+--------+-------+-------+------------+-------+-------+---------+
+| emp_no | e_name | e_job | e_mgr | hiredate   | e_sal | e_com | dept_no |
++--------+--------+-------+-------+------------+-------+-------+---------+
+|   7934 | MILLER | CLERK |  7782 | 1982-01-23 |  1300 |  NULL |      10 |
++--------+--------+-------+-------+------------+-------+-------+---------+
+1 row in set (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'delimiter' at line 1
+mysql> call get_emp(7934)
+    -> &&
++--------+--------+-------+-------+------------+-------+-------+---------+
+| emp_no | e_name | e_job | e_mgr | hiredate   | e_sal | e_com | dept_no |
++--------+--------+-------+-------+------------+-------+-------+---------+
+|   7934 | MILLER | CLERK |  7782 | 1982-01-23 |  1300 |  NULL |      10 |
++--------+--------+-------+-------+------------+-------+-------+---------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> call get_emp(7934) &&;
++--------+--------+-------+-------+------------+-------+-------+---------+
+| emp_no | e_name | e_job | e_mgr | hiredate   | e_sal | e_com | dept_no |
++--------+--------+-------+-------+------------+-------+-------+---------+
+|   7934 | MILLER | CLERK |  7782 | 1982-01-23 |  1300 |  NULL |      10 |
++--------+--------+-------+-------+------------+-------+-------+---------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+    -> ^C
+mysql> call get_emp(7934) &&;
++--------+--------+-------+-------+------------+-------+-------+---------+
+| emp_no | e_name | e_job | e_mgr | hiredate   | e_sal | e_com | dept_no |
++--------+--------+-------+-------+------------+-------+-------+---------+
+|   7934 | MILLER | CLERK |  7782 | 1982-01-23 |  1300 |  NULL |      10 |
++--------+--------+-------+-------+------------+-------+-------+---------+
+1 row in set (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+    -> ^C
+mysql> call get_emp(7934)&&;
++--------+--------+-------+-------+------------+-------+-------+---------+
+| emp_no | e_name | e_job | e_mgr | hiredate   | e_sal | e_com | dept_no |
++--------+--------+-------+-------+------------+-------+-------+---------+
+|   7934 | MILLER | CLERK |  7782 | 1982-01-23 |  1300 |  NULL |      10 |
++--------+--------+-------+-------+------------+-------+-------+---------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+    -> ^C
+mysql> select * from employee where e_id in(select emp from )
+    -> ^C
+mysql> ^C
+mysql> select * from employee where emp_no in(select emp_no from employee where e_sal >= 1000);
+    -> ^C
+mysql> select * from employee where emp_no in(select emp_no from employee where e_sal>=1000);
+    -> ^C
+mysql> select e_name from employee where emp_no in(select emp_no from employee where e_sal>=1000);
+    -> ^C
+mysql> \q
+mysql> use collabera;
+Database changed
+mysql> select * from employee where emp_no in(select emp_no from where e_sal>=1000);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where e_sal>=1000)' at line 1
+mysql> select * from employee where emp_no in(select emp_no from employee where e_sal >= 1000);
++--------+--------+-----------+-------+------------+-------+-------+---------+
+| emp_no | e_name | e_job     | e_mgr | hiredate   | e_sal | e_com | dept_no |
++--------+--------+-----------+-------+------------+-------+-------+---------+
+|   7499 | ALLEN  | SALESMAN  |  7698 | 1081-02-20 |  1600 |   300 |      30 |
+|   7521 | WARD   | SALESMAN  |  7698 | 1981-02-22 |  1250 |   500 |      30 |
+|   7566 | JONES  | MANAGER   |  7839 | 1981-04-02 |  2975 |  NULL |      20 |
+|   7654 | MARTIN | SALESMAN  |  7698 | 1981-09-28 |  1250 |  1400 |      30 |
+|   7698 | BLAKE  | MANAGER   |  7839 | 1981-05-01 |  2850 |  NULL |      30 |
+|   7782 | CLARK  | MANAGER   |  7839 | 1981-06-09 |  2450 |  NULL |      10 |
+|   7788 | SCOTT  | ANALYST   |  7566 | 1987-04-19 |  3000 |  NULL |      20 |
+|   7839 | KING   | PRESIDENT |  NULL | 1981-11-17 |  5000 |  NULL |      10 |
+|   7844 | TURNER | SALESMAN  |  7698 | 1981-09-08 |  1500 |     0 |      30 |
+|   7876 | ADAMS  | CLERK     |  7788 | 1987-05-23 |  1100 |  NULL |      20 |
+|   7902 | FORD   | ANALYST   |  7566 | 1981-12-03 |  3000 |  NULL |      20 |
+|   7934 | MILLER | CLERK     |  7782 | 1982-01-23 |  1300 |  NULL |      10 |
++--------+--------+-----------+-------+------------+-------+-------+---------+
+12 rows in set (0.00 sec)
+
+mysql> select * from employee where emp_no in(select emp_no from employee where e_sal >= 1500);
++--------+--------+-----------+-------+------------+-------+-------+---------+
+| emp_no | e_name | e_job     | e_mgr | hiredate   | e_sal | e_com | dept_no |
++--------+--------+-----------+-------+------------+-------+-------+---------+
+|   7499 | ALLEN  | SALESMAN  |  7698 | 1081-02-20 |  1600 |   300 |      30 |
+|   7566 | JONES  | MANAGER   |  7839 | 1981-04-02 |  2975 |  NULL |      20 |
+|   7698 | BLAKE  | MANAGER   |  7839 | 1981-05-01 |  2850 |  NULL |      30 |
+|   7782 | CLARK  | MANAGER   |  7839 | 1981-06-09 |  2450 |  NULL |      10 |
+|   7788 | SCOTT  | ANALYST   |  7566 | 1987-04-19 |  3000 |  NULL |      20 |
+|   7839 | KING   | PRESIDENT |  NULL | 1981-11-17 |  5000 |  NULL |      10 |
+|   7844 | TURNER | SALESMAN  |  7698 | 1981-09-08 |  1500 |     0 |      30 |
+|   7902 | FORD   | ANALYST   |  7566 | 1981-12-03 |  3000 |  NULL |      20 |
++--------+--------+-----------+-------+------------+-------+-------+---------+
+8 rows in set (0.00 sec)
+
+mysql> desc dept;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| d_no   | int(11)     | NO   | PRI | NULL    |       |
+| d_name | varchar(20) | YES  |     | NULL    |       |
+| d_loc  | varchar(20) | YES  |     | NULL    |       |
+| emp_id | int(11)     | YES  | MUL | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> alter table employee change dept_no dept_no int forign key;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'forign key' at line 1
+mysql> alter table employee change dept_no dept_no int foreign key;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'foreign key' at line 1
+mysql> alter table employee add dept_no dept_no int foreign key;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'dept_no int foreign key' at line 1
+mysql> desc employee;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| emp_no   | int(11)     | NO   | PRI | NULL    |       |
+| e_name   | varchar(20) | YES  |     | NULL    |       |
+| e_job    | varchar(20) | YES  |     | NULL    |       |
+| e_mgr    | int(11)     | YES  |     | NULL    |       |
+| hiredate | date        | YES  |     | NULL    |       |
+| e_sal    | int(11)     | YES  |     | NULL    |       |
+| e_com    | int(11)     | YES  |     | NULL    |       |
+| dept_no  | int(11)     | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+mysql> alter table employee change dept_no dept_no int foreign key references dept(d_no); 
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'foreign key references dept(d_no)' at line 1
+mysql> alter table employee add foreign key (dept_no) references dept(d_no);
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`collabera`.`#sql-1284_18`, CONSTRAINT `#sql-1284_18_ibfk_1` FOREIGN KEY (`dept_no`) REFERENCES `dept` (`d_no`))
+mysql> alter table dept drop column emp_id;
+ERROR 1553 (HY000): Cannot drop index 'emp_id': needed in a foreign key constraint
+mysql> alter table dept drop foreign key emp_id;
+ERROR 1091 (42000): Can't DROP 'emp_id'; check that column/key exists
+mysql> alter table dept drop column foreign key emp_id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'foreign key emp_id' at line 1
+mysql> alter table dept drop foreign key emp_id;
+ERROR 1091 (42000): Can't DROP 'emp_id'; check that column/key exists
+mysql> desc dept
+    -> ^C
+mysql> desc dept;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| d_no   | int(11)     | NO   | PRI | NULL    |       |
+| d_name | varchar(20) | YES  |     | NULL    |       |
+| d_loc  | varchar(20) | YES  |     | NULL    |       |
+| emp_id | int(11)     | YES  | MUL | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> alter table dept change emp_id emp_idd int;
+Query OK, 0 rows affected (0.00 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc dept;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| d_no    | int(11)     | NO   | PRI | NULL    |       |
+| d_name  | varchar(20) | YES  |     | NULL    |       |
+| d_loc   | varchar(20) | YES  |     | NULL    |       |
+| emp_idd | int(11)     | YES  | MUL | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> alter table dept change emp_idd emp_id int unique;
+ERROR 1553 (HY000): Cannot drop index 'emp_id': needed in a foreign key constraint
+mysql> drop table dept;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> create table dept(d_no int primary key,d_name varchar(20),e_id int, foreign key(e_id) refeerences employee(emp_no);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'refeerences employee(emp_no)' at line 1
+mysql> create table dept(d_no int primary key,d_name varchar(20),e_id int, foreign key(e_id) refeerences employee(emp_no));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'refeerences employee(emp_no))' at line 1
+mysql> create table dept(d_no int primary key,d_name varchar(20),e_id int,foreign key(e_id) references employee(emp_no));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc dept;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| d_no   | int(11)     | NO   | PRI | NULL    |       |
+| d_name | varchar(20) | YES  |     | NULL    |       |
+| e_id   | int(11)     | YES  | MUL | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> select * from employee;
++--------+--------+-----------+-------+------------+-------+-------+---------+
+| emp_no | e_name | e_job     | e_mgr | hiredate   | e_sal | e_com | dept_no |
++--------+--------+-----------+-------+------------+-------+-------+---------+
+|   7369 | SMITH  | CLERK     |  7602 | 1980-12-17 |   800 |  NULL |      20 |
+|   7499 | ALLEN  | SALESMAN  |  7698 | 1081-02-20 |  1600 |   300 |      30 |
+|   7521 | WARD   | SALESMAN  |  7698 | 1981-02-22 |  1250 |   500 |      30 |
+|   7566 | JONES  | MANAGER   |  7839 | 1981-04-02 |  2975 |  NULL |      20 |
+|   7654 | MARTIN | SALESMAN  |  7698 | 1981-09-28 |  1250 |  1400 |      30 |
+|   7698 | BLAKE  | MANAGER   |  7839 | 1981-05-01 |  2850 |  NULL |      30 |
+|   7782 | CLARK  | MANAGER   |  7839 | 1981-06-09 |  2450 |  NULL |      10 |
+|   7788 | SCOTT  | ANALYST   |  7566 | 1987-04-19 |  3000 |  NULL |      20 |
+|   7839 | KING   | PRESIDENT |  NULL | 1981-11-17 |  5000 |  NULL |      10 |
+|   7844 | TURNER | SALESMAN  |  7698 | 1981-09-08 |  1500 |     0 |      30 |
+|   7876 | ADAMS  | CLERK     |  7788 | 1987-05-23 |  1100 |  NULL |      20 |
+|   7900 | JAMES  | CLERK     |  7698 | 1981-12-03 |   950 |  NULL |      30 |
+|   7902 | FORD   | ANALYST   |  7566 | 1981-12-03 |  3000 |  NULL |      20 |
+|   7934 | MILLER | CLERK     |  7782 | 1982-01-23 |  1300 |  NULL |      10 |
++--------+--------+-----------+-------+------------+-------+-------+---------+
+14 rows in set (0.00 sec)
+
+mysql> \q

@@ -1,0 +1,5 @@
+package com.te.springcoredemo.bean;
+
+public class Employee {
+	
+}

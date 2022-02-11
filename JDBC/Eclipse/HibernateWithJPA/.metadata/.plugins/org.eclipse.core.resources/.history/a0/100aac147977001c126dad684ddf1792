@@ -1,0 +1,46 @@
+package com.te.junitdemo.lifecycle;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.condition.EnabledOnOs;
+import org.junit.jupiter.api.condition.OS;
+
+@DisplayName("Test cases for math utils")
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+public class MathUtilsTest {
+	MathUtils mathUtils;
+	
+	@Test
+	public void addTest() {
+//		mathUtils = new MathUtils();
+		assertEquals(10, mathUtils.add(5, 5), "This is the test case for add");
+		System.out.println("Inside add test");
+	}
+
+	@Test
+	public void devideTest() {
+//		mathUtils = new MathUtils();
+		assertThrows(ArithmeticException.class, () -> mathUtils.devide(10, 0));
+		System.out.println("inside divide test");
+	}
+	
+	@BeforeEach
+	public void init() {
+		System.out.println("Before Each");
+		mathUtils = new MathUtils();
+	}
+	
+	@AfterEach
+	public void destroy() {
+		System.out.println("After Each");
+//		mathUtils = null;
+
+	}
+}

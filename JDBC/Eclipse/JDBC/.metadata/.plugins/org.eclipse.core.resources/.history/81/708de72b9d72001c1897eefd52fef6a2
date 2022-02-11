@@ -1,0 +1,8 @@
+package com.te.jdbc.test;
+
+public class Test {
+	public static void main(String[] args) {
+		DeleteData data = new DeleteData();
+		data.deleteData();
+	}
+}

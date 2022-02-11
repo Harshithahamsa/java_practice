@@ -1,0 +1,12 @@
+package com.te.employee.configuration;
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.orm.jpa.LocalEntityManagerFactoryBean;
+
+@Configuration
+public class EntityManagerFactoryBean {
+
+	public LocalEntityManagerFactoryBean name() {
+		
+	}
+}

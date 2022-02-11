@@ -1,0 +1,41 @@
+package com.te.jdbc.test;
+
+import java.sql.*;
+import javax.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class CreateTable {
+	public static void main(String[] args) {
+		
+		try {
+			
+			Class.forName("com.mysql.jdbc.Driver");
+			
+			String dbName = "students";
+			String url = "jdbc:mysql://localhost:3306/" + dbName;
+			String username = "root";
+			String password = "root";
+			Connection connection = DriverManager.getConnection(url, username, password);
+			if (!connection.isClosed()) {
+				System.out.println("Connection is establish");
+			} else {
+				System.out.println("Connection was not established");
+			}
+			
+			Statement statement = connection.createStatement();
+			
+			String query = "create table student(s_id int primary key,s_name varchar(20),s_age int)";
+			boolean execute = statement.execute(query);
+			System.out.println(execute);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+}

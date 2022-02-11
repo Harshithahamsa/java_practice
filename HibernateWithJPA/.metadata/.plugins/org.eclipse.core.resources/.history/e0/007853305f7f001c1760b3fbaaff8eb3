@@ -1,0 +1,5 @@
+package com.te.employee.exception;
+
+public class EmployeeException {
+
+}

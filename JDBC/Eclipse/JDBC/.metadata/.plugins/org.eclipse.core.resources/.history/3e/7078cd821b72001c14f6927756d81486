@@ -1,0 +1,7 @@
+package com.te.jdbc.test;
+
+public class UpdateData {
+	public static void main(String[] args) {
+		
+	}
+}

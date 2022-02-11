@@ -1,0 +1,64 @@
+package com.te.jdbc.test;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+//import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.Properties;
+import java.util.Scanner;
+
+public class ReadTable {
+	public static void main(String[] args) {
+		Connection connection = null;
+		String studentName = null;
+		int studentAge = 0 ;
+		
+		
+		
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Properties properties = new Properties();
+
+			FileInputStream fileInputStream = new FileInputStream("db.properties");
+			properties.load(fileInputStream);
+			
+			connection = DriverManager.getConnection(properties.getProperty("url"),properties.getProperty("username"),properties.getProperty("password"));
+			
+			String query = "insert into student(s_ids_name,s_age) values (?,?,?)";
+//			CallableStatement prepareCall = connection.prepareCall(query);
+			
+			
+//			prepareCall.setString(2, studentName);
+//			prepareCall.setInt(3, studentAge);
+			
+			Scanner scanner = new Scanner(System.in);
+			System.out.println("Enter the student name :");
+			studentName = scanner.nextLine();
+			System.out.println("Enter the student Age : ");
+			studentAge = scanner.nextInt();
+			
+			PreparedStatement prepareStatement = connection.prepareStatement(query);
+//			prepareStatement.setInt(1, 4);
+			prepareStatement.setString(2, studentName);
+			prepareStatement.setInt(3, studentAge);
+			
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+}

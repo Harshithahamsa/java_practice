@@ -1,0 +1,17 @@
+package com.te.student.bean;
+
+import java.io.Serializable;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+import lombok.Data;
+
+
+@Entity
+@Data
+@Table(name = "student_details")
+public class StudentDetails implements Serializable{
+
+	
+}

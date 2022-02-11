@@ -1,0 +1,14 @@
+package com.te.springcoredemo;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.te.springcoredemo.bean.Employee;
+
+public class EmployeeMainTest {
+	public static void main(String[] args) {
+		ApplicationContext applicationContext = new ClassPathXmlApplicationContext("beans.xml");
+		Employee employee = applicationContext.getBean(employee);
+	}
+	
+}

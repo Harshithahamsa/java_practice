@@ -1,0 +1,15 @@
+package com.te.demo;
+
+import java.util.LinkedList;
+import java.util.Scanner;
+
+public class Demo {
+	public static void main(String[] args) {
+		LinkedList<String> linkedList = new LinkedList<String>();
+		linkedList.add("hello");
+		linkedList.add("hi");
+		linkedList.add("world");
+		linkedList.add("hell");
+		linkedList.add("earth");
+	}
+}

@@ -1,0 +1,13 @@
+package com.te.hibernate;
+
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+import com.te.hibernate.jpa.beans.Employee;
+
+public class Read {
+	public static void main(String[] args) {
+		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EmpUnit01");
+		
+	}
+}

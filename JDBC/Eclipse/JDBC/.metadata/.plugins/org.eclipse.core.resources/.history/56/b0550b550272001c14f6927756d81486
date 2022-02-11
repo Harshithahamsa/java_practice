@@ -1,0 +1,12 @@
+package com.te.jdbc;
+
+import java.util.Properties;
+
+public class CreateProperties {
+	public static void main(String[] args) {
+		Properties properties =new Properties();
+		properties.setProperty("url", "jdbc:mysql://localhost:3306/student");
+		properties.setProperty("username", "root");
+		properties.setProperty("password", "root");
+	}
+}

@@ -1,0 +1,12 @@
+package com.te.jdbc.test;
+
+import java.sql.Connection;
+import java.util.Scanner;
+
+public class DeleteData {
+	public void deleteData() {
+		Connection connection = null;
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Enter the name of the student you want to delete");
+	}
+}

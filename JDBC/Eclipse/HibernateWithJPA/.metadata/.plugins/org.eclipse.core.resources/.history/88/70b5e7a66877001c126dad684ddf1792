@@ -1,0 +1,13 @@
+package com.te.junitdemo;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+
+public class MathUtilsTest {
+	@Test
+	public void addTest() {
+		MathUtils mathUtils = new MathUtils();
+		assertEquals(10, mathUtils.add(5, 6),"This is the test case for add");
+	}
+}

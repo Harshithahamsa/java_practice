@@ -1,0 +1,15 @@
+package com.te.employee.dao;
+
+import com.te.employee.bean.EmployeeDetails;
+
+public interface EmployeeDb {
+	public EmployeeDetails login(int id,String password);
+	
+	public boolean addEmp(EmployeeDetails details);
+	
+	public boolean deleteData(int id);
+	
+	public EmployeeDetails getData(int id);
+	
+	public EmployeeDetails allEmpData();
+}

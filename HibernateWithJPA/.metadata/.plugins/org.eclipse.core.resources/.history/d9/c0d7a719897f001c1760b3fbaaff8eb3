@@ -1,0 +1,14 @@
+package com.te.student.service;
+
+import com.te.student.bean.StudentDetails;
+
+public class StudentServiceImp implements StudentService{
+
+	@Override
+	public StudentDetails login(int rollno, String password) {
+		if (rollno != ) {
+			
+		}
+	}
+
+}

@@ -1,0 +1,13 @@
+package com.te.student.service;
+
+import com.te.student.bean.StudentDetails;
+
+public class StudentServiceImp implements StudentService{
+
+	@Override
+	public StudentDetails login(String rollno, String password) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

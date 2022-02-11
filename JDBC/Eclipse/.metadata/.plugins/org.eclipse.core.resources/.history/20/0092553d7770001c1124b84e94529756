@@ -1,0 +1,8 @@
+package com.te.demo;
+
+public class PrimeNumber {
+	public static void main(String[] args) {
+		int number,count;
+		System.out.println("Enter a number to check it is prime or not :- ");
+	}
+}

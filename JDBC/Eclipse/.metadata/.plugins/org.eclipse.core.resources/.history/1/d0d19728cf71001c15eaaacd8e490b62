@@ -1,0 +1,17 @@
+package com.te.assignment.assignment02;
+
+import java.util.ArrayList;
+
+public class EmployeeTest {
+	public static void main(String[] args) {
+		ArrayList<Employee> arrayList = new ArrayList<Employee>();
+		arrayList.add(new Employee(10, 10, "Deepankar", 4200.56));
+		arrayList.add(new Employee(30, 14, "Sankar", 9880.56));
+		arrayList.add(new Employee(50, 12, "Bhupati", 5400.56));
+		arrayList.add(new Employee(20, 13, "Anil", 3200.56));
+		arrayList.add(new Employee(40, 15, "Anil2", 4000.56));
+		
+		System.out.println(arrayList);
+		System.out.println("");
+	}
+}

@@ -1,0 +1,29 @@
+package com.te.jdbc.test;
+
+// import JDBC API
+import java.sql.*;
+import java.util.Scanner;
+
+import javax.sql.*;
+
+
+public class ReadData {
+	public String raedData() {
+		Connection connection = null;
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root", "root");
+			
+			
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+}

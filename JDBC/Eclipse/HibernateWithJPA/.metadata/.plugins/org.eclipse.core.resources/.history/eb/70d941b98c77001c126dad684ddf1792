@@ -1,0 +1,9 @@
+package com.te.springcoredemo;
+
+import org.springframework.context.ApplicationContext;
+
+import com.te.springcoredemo.bean.Employee;
+
+public class EmployeeMainTest {
+	Employee employee = new Employee();
+}

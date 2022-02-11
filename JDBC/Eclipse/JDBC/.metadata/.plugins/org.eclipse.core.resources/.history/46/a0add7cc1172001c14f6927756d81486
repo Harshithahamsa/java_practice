@@ -1,0 +1,27 @@
+package com.te.jdbc.test;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.sql.Connection;
+import java.util.Properties;
+
+public class ReadTable {
+	public static void main(String[] args) {
+		Connection connection = null;
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Properties properties = new Properties();
+
+			FileInputStream fileInputStream = new FileInputStream("db.properties");
+			properties.load(fileInputStream);
+			
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+}

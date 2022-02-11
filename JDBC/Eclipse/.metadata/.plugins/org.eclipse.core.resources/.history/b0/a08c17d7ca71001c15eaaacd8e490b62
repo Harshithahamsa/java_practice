@@ -1,0 +1,9 @@
+package com.te.assignment.assignment02;
+
+import java.util.ArrayList;
+
+public class EmployeeTest {
+	public static void main(String[] args) {
+		ArrayList<Employee> arrayList = new ArrayList<Employee>();
+	}
+}

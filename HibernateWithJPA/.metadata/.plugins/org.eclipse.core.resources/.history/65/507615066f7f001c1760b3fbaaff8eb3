@@ -1,0 +1,5 @@
+package com.te.student.bean;
+
+public class StudentDetails {
+
+}

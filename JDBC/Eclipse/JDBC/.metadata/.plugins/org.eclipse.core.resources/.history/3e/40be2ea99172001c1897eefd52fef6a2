@@ -1,0 +1,15 @@
+package com.te.jdbc.test;
+
+// import JDBC API
+import java.sql.*;
+import java.util.Scanner;
+
+import javax.sql.*;
+
+
+public class ReadData {
+	public String raedData() {
+		
+		return null;
+	}
+}

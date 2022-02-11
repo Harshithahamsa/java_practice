@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<bean class="com.te.springcoredemo.bean.Laptop" id="laptop" autowire-candidate="true">
+		<property name="laptopName" value="DELL"/>
+		<property name="laptopPrice" value="50000"/>
+	</bean>
+	
+	<bean class="com.te.springcoredemo.bean.Laptop" id="laptop2" autowire-candidate="false">
+		<property name="laptopName" value="HP"/>
+		<property name="laptopPrice" value="40000"/>
+	</bean>
+	
+	<!-- <bean class="com.te.springcoredemo.bean.Laptop" id="laptop3">
+		<constructor-arg name="laptopName" value="Lenovo"/>
+		<constructor-arg name="laptopPrice" value="60000"/>
+	</bean>  -->
+	
+	<!-- Autowiring using byName -->
+	<bean class="com.te.springcoredemo.bean.EmployeeLaptop" id="employee1" autowire="byName">
+		<property name="employeeId" value="10"/>
+		<property name="employeeName" value="Deepankar"/>
+	</bean> 
+	
+	<!-- Autowiring using byType -->
+	<bean class="com.te.springcoredemo.bean.EmployeeLaptop" id="employee2" autowire="byType">
+		<property name="employeeId" value="20"/>
+		<property name="employeeName" value="Bhupati"/>
+	</bean>
+	
+	<!-- Autowiring using constructor -->
+	<bean class="com.te.springcoredemo.bean.EmployeeLaptop" id="employee" autowire="constructor">
+		<constructor-arg name="employeeId" value="30"/>
+		<constructor-arg name="employeeName" value="Anil"/>
+	</bean>
+
+</beans>

@@ -1,0 +1,51 @@
+<%@page import="com.te.employee.bean.EmployeeDetails"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@include file="navbar.jsp"%>
+<%
+EmployeeDetails details = (EmployeeDetails) request.getAttribute("detail");
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<fieldset>
+		<legend>Employee Update Details</legend>
+		<form action="./" method="post">
+			<table>
+				<tr>
+					<td><label>Enter Your ID :</label></td>
+					<td><input type="number" name="id" value=""></td>
+				</tr>
+				<%
+				if (details != null) {
+				%>
+				<tr>
+					<td><label>Enter Your UserName :</label></td>
+					<td><input type="text" name="user"></td>
+				</tr>
+				<tr>
+					<td><label>Enter Your Name :</label></td>
+					<td><input type="text" name="name"></td>
+				</tr>
+				<tr>
+					<td><label>Enter Your Address :</label></td>
+					<td><input type="text" name="address"></td>
+				</tr>
+				<tr>
+					<td><label>Enter Your Password :</label></td>
+					<td><input type="password" name="password"></td>
+				</tr>
+				<%
+				}
+				%>
+			</table>
+			<input type="submit" value="Search" formaction="search"> <input
+				type="submit" value="Add">
+		</form>
+	</fieldset>
+</body>
+</html>

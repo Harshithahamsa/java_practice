@@ -1,0 +1,38 @@
+package com.te.jdbc.test;
+
+import java.sql.*;
+import java.util.Scanner;
+
+import javax.sql.*;
+
+public class UpdateData {
+	public static void main(String[] args) {
+		Connection connection = null;
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("If you want change name of student press '1' and you want to change age press '2'");
+		int input = scanner.nextInt();
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/student","root","root");
+			
+			if (input == 1) {
+				System.out.println("Enter the name of the student you want to change : ");
+				String previousName = scanner.next();
+				System.out.println("Enter the new Name :");
+				String updateName = scanner.next();
+				String query = "call update_name(updateName,previousName)";
+				CallableStatement prepareCall = connection.prepareCall(query);
+			}
+			
+			
+			
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+}

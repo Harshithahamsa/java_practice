@@ -1,0 +1,32 @@
+package com.te.designpattern.factorydp;
+
+public class ShapeFactory {
+	public Shape getShape (String input) {
+		if ("rectangle".equalsIgnoreCase(input)) {
+			return Rectangle();
+		}
+		if ("circle".equalsIgnoreCase(input)) {
+			return Circle();
+		}
+		if ("tringle".equalsIgnoreCase(input)) {
+			return Tringle();
+		}
+		return null;
+		
+	}
+
+//	private Shape Circle() {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+//
+//	private Shape Tringle() {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+//
+//	private Shape Rectangle() {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+}

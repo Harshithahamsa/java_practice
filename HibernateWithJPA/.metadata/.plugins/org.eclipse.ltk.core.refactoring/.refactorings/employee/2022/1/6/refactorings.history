@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Move &apos;allemp.jsp&apos; to &apos;test&apos;" description="Move &apos;allemp.jsp&apos; to &apos;test&apos;" destination="src/test" element1="src/main/webapp/WEB-INF/views/allemp.jsp" flags="7" id="org.eclipse.ltk.core.refactoring.move.resources" resources="1" stamp="1643652873539" updateReferences="true"/>&#x0A;<refactoring comment="Move &apos;allemp.jsp&apos; to &apos;views&apos;" description="Move &apos;allemp.jsp&apos; to &apos;views&apos;" destination="src/main/webapp/WEB-INF/views" element1="src/test/allemp.jsp" flags="7" id="org.eclipse.ltk.core.refactoring.move.resources" resources="1" stamp="1643652885005" updateReferences="true"/>
+</session>

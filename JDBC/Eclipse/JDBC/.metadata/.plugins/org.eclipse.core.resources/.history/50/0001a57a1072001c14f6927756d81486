@@ -1,0 +1,9 @@
+package com.te.jdbc.test;
+
+import java.sql.Connection;
+
+public class ReadTable {
+	public static void main(String[] args) {
+		Connection connection = null;
+	}
+}

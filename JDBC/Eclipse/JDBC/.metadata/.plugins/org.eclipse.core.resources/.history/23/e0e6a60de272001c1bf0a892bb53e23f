@@ -1,0 +1,11 @@
+package com.te.designpattern.factorydp;
+
+public class Shape2 implements Shape {
+
+	@Override
+	public void getShapeInfo() {
+		// TODO Auto-generated method stub
+
+	}
+
+}

@@ -1,0 +1,5 @@
+package com.te.jdbc.test;
+
+public class ReadTable {
+	
+}
